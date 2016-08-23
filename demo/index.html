@@ -1,0 +1,29 @@
+<html>
+
+<head>
+  <style>
+    body {
+      font-family: 'Roboto', san-serif;
+    }
+  </style>
+  <link rel="import" href="../pie-env-editor.html" />
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      var envEditor = document.querySelector('pie-env-editor');
+      envEditor.env = {
+        mode: 'gather',
+        role: 'student',
+        locale: 'en_US'//,
+        //accessibility: {}
+      };
+    });
+    </script>
+</head>
+
+<body>
+  <h2>env-editor</h2>
+  <pie-env-editor></pie-env-editor>
+
+</body>
+
+</html>

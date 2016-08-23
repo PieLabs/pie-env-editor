@@ -1,0 +1,37 @@
+<link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="../iron-autogrow-textarea/iron-autogrow-textarea.html">
+
+<dom-module id="pie-env-editor">
+  <template>
+    <iron-autogrow-textarea rows="4" bind-value={{_envJson}}></iron-autogrow-textarea>
+  </template>
+</dom-module>
+
+<script>
+  Polymer({
+    is: 'pie-env-editor',
+    properties: {
+      env: {
+        type: Object,
+        observer: 'envChanged'
+      },
+      _envJson: {
+        type: String,
+        observer: '_envJsonChanged'
+      },
+    },
+    envChanged: function(env) {
+      this._envJson = JSON.stringify(this.env, null, 2);
+    },
+    _envJsonChanged: function(newValue, oldValue) {
+      if (oldValue !== newValue) { 
+        this.env = JSON.parse(newValue);
+        this.fire('pie.envChanged', this.env);
+      }
+    },
+    observers: [
+      'envChanged(env.*)',
+      '_envJsonChanged(json)'
+    ]
+  });
+</script>
