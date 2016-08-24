@@ -3,20 +3,23 @@
 
 <dom-module id="pie-env-editor">
   <style type="text/css">
-    iron-autogrow-textarea {
-      background: #f5f2f0;
-      padding: 13px;
-      font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
-      font-size: 14px;
-    }
-
-    iron-autogrow-textarea textarea {
-      border: 1px solid #cccccc;
-      border-radius: 4px;
+    :host {
+      border: none;
+      --iron-autogrow-textarea: {
+        border: 1px solid #cccccc;
+        border-radius: 4px;
+        background: #f5f2f0;
+        padding: 13px;
+        font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+        font-size: 13px;
+      };
+      iron-autogrow-textarea {
+        border: none !important;
+      }
     }
   </style>
   <template>
-    <iron-autogrow-textarea rows="4" style="width: {{width}};" bind-value={{_envJson}}></iron-autogrow-textarea>
+    <iron-autogrow-textarea rows="4" style="width: {{width}}; border: none;" bind-value={{_envJson}}></iron-autogrow-textarea>
   </template>
 </dom-module>
 
