@@ -2,7 +2,7 @@
   "name": "pie-env-editor",
   "version": "0.0.1",
   "description": "A text area to edit the 'env' for PIE",
-  "main": "./env-editor.html",
+  "main": "./pie-env-editor.html",
   "license": "MIT",
   "private": true,
   "dependencies": {
