@@ -2,8 +2,21 @@
 <link rel="import" href="../iron-autogrow-textarea/iron-autogrow-textarea.html">
 
 <dom-module id="pie-env-editor">
+  <style type="text/css">
+    iron-autogrow-textarea {
+      background: #f5f2f0;
+      padding: 13px;
+      font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+      font-size: 14px;
+    }
+
+    iron-autogrow-textarea textarea {
+      border: 1px solid #cccccc;
+      border-radius: 4px;
+    }
+  </style>
   <template>
-    <iron-autogrow-textarea rows="4" bind-value={{_envJson}}></iron-autogrow-textarea>
+    <iron-autogrow-textarea rows="4" style="width: {{width}};" bind-value={{_envJson}}></iron-autogrow-textarea>
   </template>
 </dom-module>
 
@@ -19,6 +32,10 @@
         type: String,
         observer: '_envJsonChanged'
       },
+      width: {
+        type: String,
+        value: '200px'
+      }
     },
     envChanged: function(env) {
       this._envJson = JSON.stringify(this.env, null, 2);
