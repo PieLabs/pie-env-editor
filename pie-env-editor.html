@@ -40,6 +40,12 @@
         value: '200px'
       }
     },
+    created: function() {
+      var self = this;
+      document.addEventListener('pie.envChanged', function(event) {
+        self.envChanged(event.target.env);
+      });
+    },
     envChanged: function(env) {
       this._envJson = JSON.stringify(this.env, null, 2);
     },
@@ -50,7 +56,7 @@
       }
     },
     observers: [
-      'envChanged(env.*)',
+      'envChanged(env)',
       '_envJsonChanged(json)'
     ]
   });
