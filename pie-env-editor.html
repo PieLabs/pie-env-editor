@@ -27,6 +27,10 @@
   Polymer({
     is: 'pie-env-editor',
     properties: {
+      env: {
+        type: Object,
+        observer: 'envChanged'
+      },
       _envJson: {
         type: String,
         observer: '_envJsonChanged'
@@ -39,17 +43,20 @@
     created: function() {
       var self = this;
       document.addEventListener('pie.envChanged', function(event) {
-        if (event.target !== self) {
-          self._envJson = JSON.stringify(event.detail, null, 2);
-        }
+        self.envChanged(event.target.env);
       });
     },
+    envChanged: function(env) {
+      this._envJson = JSON.stringify(this.env, null, 2);
+    },
     _envJsonChanged: function(newValue, oldValue) {
-      try {
-        this.fire('pie.envChanged', JSON.parse(this._envJson));  
-      } catch (e) {}
+      if (oldValue !== newValue) { 
+        this.env = JSON.parse(newValue);
+        this.fire('pie.envChanged', this.env);
+      }
     },
     observers: [
+      'envChanged(env)',
       '_envJsonChanged(json)'
     ]
   });
